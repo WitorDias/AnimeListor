@@ -19,12 +19,16 @@ public class AnimeService {
 	
 	@Autowired
 	public AnimeService(AnimeRepository animeRepository) {
-		super();
 		this.animeRepository = animeRepository;
 	}
 
 	public List<Anime> listAllAnimes() {
 		return animeRepository.findAll();
+		
+	}
+	
+	public List<Anime> listAnimeByName(String name) {
+		return animeRepository.findByName(name);
 		
 	}
 	

@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.animelistor.domain.Anime;
 import br.com.animelistor.dto.AnimeDto;
 import br.com.animelistor.services.AnimeService;
-
 
 @RestController
 @RequestMapping("animes")
@@ -28,35 +28,39 @@ public class AnimeController {
 	AnimeController(AnimeService animeService) {
 		this.animeService = animeService;
 	}
-	
+
 	@GetMapping
-	public ResponseEntity<List<Anime>> listAnime (){
+	public ResponseEntity<List<Anime>> listAnime() {
 		return ResponseEntity.ok(animeService.listAllAnimes());
-	
-	
 	}
+
+	@GetMapping("/find")
+	public ResponseEntity<List<Anime>> listAnimeByName(@RequestParam String name) {
+		return ResponseEntity.ok(animeService.listAnimeByName(name));
+	}
+
 	@GetMapping("{id}")
-	public ResponseEntity<Anime> listAnimeById (@PathVariable long id){
-		return ResponseEntity.status(HttpStatus.OK).body(animeService.listAnimeByIdOrThrowException(id));
-	
+	public ResponseEntity<Anime> listAnimeById(@PathVariable long id) {
+		return ResponseEntity.ok(animeService.listAnimeByIdOrThrowException(id));
+
 	}
-	
+
 	@PostMapping()
 	public ResponseEntity<Anime> createAnime(@RequestBody AnimeDto anime) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(animeService.saveAnime(anime));
 	}
-	
+
 	@PutMapping
-	public ResponseEntity<Void> replaceAnime(@RequestBody AnimeDto anime){
+	public ResponseEntity<Void> replaceAnime(@RequestBody AnimeDto anime) {
 		animeService.replaceAnime(anime);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
+
 	@DeleteMapping("{id}")
-	public ResponseEntity<Void> deleteAnime(@PathVariable long id){
-		 animeService.deleteAnime(id);
-		 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			
+	public ResponseEntity<Void> deleteAnime(@PathVariable long id) {
+		animeService.deleteAnime(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
 	}
 
 }
