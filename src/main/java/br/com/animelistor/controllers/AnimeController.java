@@ -34,9 +34,14 @@ public class AnimeController {
 		return ResponseEntity.ok(animeService.listAllAnimes());
 	}
 
-	@GetMapping("/find")
+	@GetMapping("/findByName")
 	public ResponseEntity<List<Anime>> listAnimeByName(@RequestParam String name) {
 		return ResponseEntity.ok(animeService.listAnimeByName(name));
+	}
+
+	@GetMapping("/findByNameAndId")
+	public ResponseEntity<List<Anime>> listAnimeByNameAndId(@RequestParam String name, @RequestParam long id) {
+		return ResponseEntity.ok(animeService.listAnimeByNameAndId(name, id));
 	}
 
 	@GetMapping("{id}")

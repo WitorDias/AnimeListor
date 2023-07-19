@@ -7,10 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import br.com.animelistor.domain.Anime;
 
-
 @Repository
 public interface AnimeRepository extends JpaRepository<Anime, Long> {
 
- List<Anime> findByName (String name);
+	List<Anime> findByName(String name);
+
+	List<Anime> findByNameAndId(String name, Long id);
 
 }
