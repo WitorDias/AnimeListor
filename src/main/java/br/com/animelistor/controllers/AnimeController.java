@@ -3,6 +3,8 @@ package br.com.animelistor.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,8 +33,8 @@ public class AnimeController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Anime>> listAnime() {
-		return ResponseEntity.ok(animeService.listAllAnimes());
+	public ResponseEntity<Page<Anime>> listAnime(Pageable pageable) {
+		return ResponseEntity.ok(animeService.listAllAnimes(pageable));
 	}
 
 	@GetMapping("/findByName")
