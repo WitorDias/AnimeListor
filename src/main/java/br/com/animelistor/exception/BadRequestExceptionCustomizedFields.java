@@ -1,19 +1,12 @@
 package br.com.animelistor.exception;
 
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
-import lombok.Builder;
-import lombok.Data;
 
-@Data
-@Builder
-public class BadRequestExceptionCustomizedFields {
+@Getter
+@SuperBuilder
+public class BadRequestExceptionCustomizedFields extends ExceptionCustomFields {
 
-	private LocalDateTime timestamp;
-	private int status;
-	private String errorDetails;
-	private String developerNote;
-	private String message;
-	
 
 }
