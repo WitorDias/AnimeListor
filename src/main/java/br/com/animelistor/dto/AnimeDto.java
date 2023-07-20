@@ -1,10 +1,13 @@
 package br.com.animelistor.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class AnimeDto {
+
 	Long id;
+	@NotEmpty(message = "Anime name can't be empty or null")
 	String name;
 	public Long getId() {
 		return id;

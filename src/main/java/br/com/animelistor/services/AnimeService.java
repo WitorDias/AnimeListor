@@ -11,6 +11,7 @@ import br.com.animelistor.domain.Anime;
 import br.com.animelistor.dto.AnimeDto;
 import br.com.animelistor.exception.BadRequestException;
 import br.com.animelistor.repository.AnimeRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class AnimeService {
@@ -44,6 +45,8 @@ public class AnimeService {
 						() -> new BadRequestException("Anime not found"));
 				
 	}
+	
+	@Transactional
 	public Anime saveAnime(AnimeDto animeDto) {
 		Anime anime = new Anime();
 		BeanUtils.copyProperties(animeDto, anime);

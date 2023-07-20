@@ -1,6 +1,6 @@
 package br.com.animelistor.exception;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.Data;
 @Builder
 public class BadRequestExceptionCustomizedFields {
 
-	private LocalDate timestamp;
+	private LocalDateTime timestamp;
 	private int status;
 	private String errorDetails;
 	private String developerNote;

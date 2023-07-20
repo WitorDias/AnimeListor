@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.animelistor.domain.Anime;
 import br.com.animelistor.dto.AnimeDto;
 import br.com.animelistor.services.AnimeService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("animes")
@@ -51,7 +52,7 @@ public class AnimeController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<Anime> createAnime(@RequestBody AnimeDto anime) {
+	public ResponseEntity<Anime> createAnime(@RequestBody @Valid AnimeDto anime) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(animeService.saveAnime(anime));
 	}
 
