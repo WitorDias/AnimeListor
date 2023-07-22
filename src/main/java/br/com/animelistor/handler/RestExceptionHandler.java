@@ -19,7 +19,7 @@ import br.com.animelistor.exception.ValidationExceptionCustomFields;
 public class RestExceptionHandler {
 
 	@ExceptionHandler(BadRequestException.class)
-	public ResponseEntity<BadRequestExceptionCustomizedFields> HandlerBadRequestException(
+	public ResponseEntity<BadRequestExceptionCustomizedFields> handlerBadRequestException(
 			BadRequestException bre) {
 
 		return new ResponseEntity<>(

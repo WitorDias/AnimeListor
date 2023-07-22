@@ -6,17 +6,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Anime {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotEmpty(message = "Anime name can't be empty or null")
 	private String name;
 	
 	public Anime() {}
+	public Anime (String name) {
+		this.name = name;
+	}
 	public Anime(String name, Long id) {
-		super();
 		this.name = name;
 		this.id = id;
 	}
