@@ -8,7 +8,7 @@ public class AnimeCreator {
 		return new Anime("Hajime no Ippo");
 	}
 	
-	public static Anime createAnimeValidd() {
+	public static Anime createAnimeValid() {
 		return new Anime("Hajime no Ippo", 1L);
 	}
 	

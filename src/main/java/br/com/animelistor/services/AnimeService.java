@@ -36,11 +36,6 @@ public class AnimeService {
 
 	}
 	
-	public List<Anime> listAnimeByNameAndId(String name, long id) {
-		return animeRepository.findByNameAndId(name, id);
-
-	}
-	
 	public Anime listAnimeByIdOrThrowException(long id) {
 		return animeRepository.findById(id)
 				.orElseThrow(

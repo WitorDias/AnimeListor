@@ -22,7 +22,7 @@ import br.com.animelistor.services.AnimeService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("animes")
+@RequestMapping("api/v1/animes")
 public class AnimeController {
 
 	private final AnimeService animeService;
@@ -47,10 +47,6 @@ public class AnimeController {
 		return ResponseEntity.ok(animeService.listAnimeByName(name));
 	}
 
-	@GetMapping("/findByNameAndId")
-	public ResponseEntity<List<Anime>> listAnimeByNameAndId(@RequestParam String name, @RequestParam long id) {
-		return ResponseEntity.ok(animeService.listAnimeByNameAndId(name, id));
-	}
 
 	@GetMapping("{id}")
 	public ResponseEntity<Anime> listAnimeById(@PathVariable long id) {

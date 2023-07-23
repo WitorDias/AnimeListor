@@ -52,7 +52,9 @@ class AnimeRepositoryTest {
 		animeRepository.save(animeUpdated);
 
 		Assertions.assertThat(animeUpdated).isNotNull();
+		
 		Assertions.assertThat(animeUpdated.getId()).isNotNull();
+		
 		Assertions.assertThat(animeUpdated.getName()).isEqualTo(animeSaved.getName());
 
 	}
