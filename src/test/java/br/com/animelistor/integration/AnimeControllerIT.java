@@ -94,11 +94,11 @@ class AnimeControllerIT {
 		Anime anime = testRestTemplate.getForObject("/api/v1/animes/{id}", Anime.class, expectedAnimeId);
 		
 		Assertions.assertThat(anime)
-		.isNotNull();
+			.isNotNull();
 		
 		Assertions.assertThat(anime.getId())
-		.isNotNull()
-		.isEqualTo(expectedAnimeId);
+			.isNotNull()
+			.isEqualTo(expectedAnimeId);
 		
 	}
 	
@@ -117,13 +117,13 @@ class AnimeControllerIT {
 				}).getBody();
 		
 		Assertions.assertThat(animeList)
-		.isNotNull()
-		.isNotEmpty()
-		.hasSize(1);
+			.isNotNull()
+			.isNotEmpty()
+			.hasSize(1);
 		
 		Assertions.assertThat(animeList.get(0).getName())
-		.isNotNull()
-		.isEqualTo(expectedAnimeName);
+			.isNotNull()
+			.isEqualTo(expectedAnimeName);
 		
 	}
 	
@@ -138,8 +138,8 @@ class AnimeControllerIT {
 				}).getBody();
 		
 		Assertions.assertThat(animeList)
-		.isNotNull()
-		.isEmpty();
+			.isNotNull()
+			.isEmpty();
 		
 	}
 	
@@ -151,14 +151,16 @@ class AnimeControllerIT {
 		ResponseEntity<Anime> animeResponseEntity = testRestTemplate.postForEntity("/api/v1/animes", animeDtoToBeSaved, Anime.class);
 		
 		Assertions.assertThat(animeResponseEntity)
-		.isNotNull();
+			.isNotNull();
 		
 		Assertions.assertThat(animeResponseEntity.getStatusCode())
-		.isEqualTo(HttpStatus.CREATED);
+			.isEqualTo(HttpStatus.CREATED);
 		
-		Assertions.assertThat(animeResponseEntity.getBody()).isNotNull();
+		Assertions.assertThat(animeResponseEntity.getBody())
+			.isNotNull();
 		
-		Assertions.assertThat(animeResponseEntity.getBody().getId()).isNotNull();
+		Assertions.assertThat(animeResponseEntity.getBody().getId())
+			.isNotNull();
 		
 	}
 	
@@ -172,9 +174,11 @@ class AnimeControllerIT {
 		
 		ResponseEntity<Void> entity = testRestTemplate.exchange("/api/v1/animes", HttpMethod.PUT, new HttpEntity<>(animeSaved), Void.class);
 		
-		Assertions.assertThat(entity).isNotNull();
+		Assertions.assertThat(entity)
+			.isNotNull();
 		
-		Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+		Assertions.assertThat(entity.getStatusCode())
+			.isEqualTo(HttpStatus.NO_CONTENT);
 		
 	}
 	
@@ -186,9 +190,11 @@ class AnimeControllerIT {
 		
 		ResponseEntity<Void> animeToDelete = testRestTemplate.exchange("/api/v1/animes/{id}", HttpMethod.DELETE, null, Void.class, animeSaved.getId());
 				
-		Assertions.assertThat(animeToDelete).isNotNull();
+		Assertions.assertThat(animeToDelete)
+			.isNotNull();
 		
-		Assertions.assertThat(animeToDelete.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+		Assertions.assertThat(animeToDelete.getStatusCode())
+			.isEqualTo(HttpStatus.NO_CONTENT);
 		
 	}
 }
