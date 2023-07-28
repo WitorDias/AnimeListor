@@ -35,17 +35,17 @@ public class AnimeController {
 	AnimeController(AnimeService animeService) {
 		this.animeService = animeService;
 	}
-
-	@GetMapping
+	
 	@Operation(summary = "List all animes with pagination", description = "5 animes per page by default, use the parameter to change it.")
-	public ResponseEntity<Page<Anime>> listAnime(@ParameterObject Pageable pageable) {
+	@GetMapping
+	public ResponseEntity<Page<AnimeDto>> listAnime(@ParameterObject Pageable pageable) {
 		return ResponseEntity.ok(animeService.listAllAnimes(pageable));
 	}
 	
 	
 	@Operation(summary = "List all animes without pagination")
 	@GetMapping("all")
-	public ResponseEntity<List<Anime>> listAnimeNonPageable() {
+	public ResponseEntity<List<AnimeDto>> listAnimeNonPageable() {
 		return ResponseEntity.ok(animeService.listAllAnimesNonPageable());
 	}
 	
@@ -55,7 +55,7 @@ public class AnimeController {
 			@ApiResponse(responseCode = "200", description = "Operation successful"),
 	})
 	@GetMapping("/findByName")
-	public ResponseEntity<List<Anime>> listAnimeByName(@RequestParam String name) {
+	public ResponseEntity<List<AnimeDto>> listAnimeByName(@RequestParam String name) {
 		return ResponseEntity.ok(animeService.listAnimeByName(name));
 	}
 
@@ -72,7 +72,7 @@ public class AnimeController {
 	}
 	
 	
-	@Operation(summary = "Create a new anime")
+	@Operation(summary = "Create a new anime. Id field isn't necessary.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "Operation successful.")
 	})

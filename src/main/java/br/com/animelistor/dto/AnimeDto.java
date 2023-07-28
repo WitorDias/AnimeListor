@@ -16,7 +16,6 @@ public class AnimeDto {
 	@Schema(description = "This is the anime name.", example = "Shingeki no Kyojin")
 	String name;
 	
-	@Schema(hidden = true)
 	Long id;
 	
 	public AnimeDto(String name){

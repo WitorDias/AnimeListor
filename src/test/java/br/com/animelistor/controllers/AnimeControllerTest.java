@@ -36,19 +36,19 @@ class AnimeControllerTest {
 	@BeforeEach
 	void setUp() {
 		
-		PageImpl<Anime> animePage = new PageImpl<>(List.of(AnimeCreator.createAnimeValid()));
+		PageImpl<AnimeDto> animePage = new PageImpl<>(List.of(AnimeDtoCreator.createAnimeDtoValid()));
 		
 		BDDMockito.when(animeServiceMock.listAllAnimes(ArgumentMatchers.any()))
 			.thenReturn(animePage);
 		
 		BDDMockito.when(animeServiceMock.listAllAnimesNonPageable())
-			.thenReturn(List.of(AnimeCreator.createAnimeValid()));
+			.thenReturn(List.of(AnimeDtoCreator.createAnimeDtoValid()));
 		
 		BDDMockito.when(animeServiceMock.listAnimeByIdOrThrowException(ArgumentMatchers.anyLong()))
 			.thenReturn(AnimeCreator.createAnimeValid());
 		
 		BDDMockito.when(animeServiceMock.listAnimeByName(ArgumentMatchers.anyString()))
-		.thenReturn(List.of(AnimeCreator.createAnimeValid()));
+		.thenReturn(List.of(AnimeDtoCreator.createAnimeDtoValid()));
 		
 		BDDMockito.when(animeServiceMock.saveAnime(ArgumentMatchers.any(AnimeDto.class)))
 		.thenReturn(AnimeCreator.createAnimeValid());
@@ -65,7 +65,7 @@ class AnimeControllerTest {
 		
 		String expectedName = AnimeCreator.createAnimeValid().getName();
 		
-		Page<Anime> animePage = animeController.listAnime(null).getBody();
+		Page<AnimeDto> animePage = animeController.listAnime(null).getBody();
 		
 		Assertions.assertThat(animePage).isNotNull();
 		
@@ -85,7 +85,7 @@ class AnimeControllerTest {
 		
 		String expectedListOfAnime = AnimeCreator.createAnimeValid().getName();
 		
-		List<Anime> animeList = animeController.listAnimeNonPageable().getBody();
+		List<AnimeDto> animeList = animeController.listAnimeNonPageable().getBody();
 		
 		
 		Assertions.assertThat(animeList)
@@ -121,7 +121,7 @@ class AnimeControllerTest {
 		
 		String expectedAnimeName = AnimeCreator.createAnimeValid().getName();
 		
-		List<Anime> animeList = animeController.listAnimeByName("One").getBody();
+		List<AnimeDto> animeList = animeController.listAnimeByName("One").getBody();
 		
 		Assertions.assertThat(animeList)
 		.isNotNull()
@@ -141,7 +141,7 @@ class AnimeControllerTest {
 		BDDMockito.when(animeServiceMock.listAnimeByName(ArgumentMatchers.anyString()))
 		.thenReturn(Collections.emptyList());
 		
-		List<Anime> animeList = animeController.listAnimeByName("Hajime").getBody();
+		List<AnimeDto> animeList = animeController.listAnimeByName("Hajime").getBody();
 		
 		Assertions.assertThat(animeList)
 		.isNotNull()

@@ -19,6 +19,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import br.com.animelistor.domain.Anime;
+import br.com.animelistor.dto.AnimeDto;
 import br.com.animelistor.exception.BadRequestException;
 import br.com.animelistor.repository.AnimeRepository;
 import br.com.animelistor.util.AnimeCreator;
@@ -63,7 +64,7 @@ class AnimeServiceTest {
 		
 		String expectedName = AnimeCreator.createAnimeValid().getName();
 		
-		Page<Anime> animePage = animeService.listAllAnimes(PageRequest.of(0, 1));
+		Page<AnimeDto> animePage = animeService.listAllAnimes(PageRequest.of(0, 1));
 		
 		Assertions.assertThat(animePage).isNotNull();
 		
@@ -83,7 +84,7 @@ class AnimeServiceTest {
 		
 		String expectedListOfAnime = AnimeCreator.createAnimeValid().getName();
 		
-		List<Anime> animeList = animeService.listAllAnimesNonPageable();
+		List<AnimeDto> animeList = animeService.listAllAnimesNonPageable();
 		
 		Assertions.assertThat(animeList)
 		.isNotNull()
@@ -118,7 +119,7 @@ class AnimeServiceTest {
 		
 		String expectedAnimeName = AnimeCreator.createAnimeValid().getName();
 		
-		List<Anime> animeList = animeService.listAnimeByName("One");
+		List<AnimeDto> animeList = animeService.listAnimeByName("One");
 		
 		Assertions.assertThat(animeList)
 		.isNotNull()
@@ -138,7 +139,7 @@ class AnimeServiceTest {
 		BDDMockito.when(animeRepositoryMock.findByName(ArgumentMatchers.anyString()))
 		.thenReturn(Collections.emptyList());
 		
-		List<Anime> animeList = animeService.listAnimeByName("Hajime");
+		List<AnimeDto> animeList = animeService.listAnimeByName("Hajime");
 		
 		Assertions.assertThat(animeList)
 		.isNotNull()

@@ -31,6 +31,7 @@ public class SecurityConfig {
         			auth
         			.requestMatchers(HttpMethod.DELETE).hasRole(ADMIN)
         			.requestMatchers(HttpMethod.PUT).hasRole(ADMIN)
+        			.requestMatchers("/actuator/**").permitAll()
         			.anyRequest().authenticated())
         		.httpBasic(Customizer.withDefaults())
         		.build();
