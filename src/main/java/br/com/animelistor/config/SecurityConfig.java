@@ -19,6 +19,8 @@ import org.springframework.security.core.userdetails.User;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+	
+	private final String ADMIN = "ADMIN";
     
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -27,7 +29,8 @@ public class SecurityConfig {
         		.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         		.authorizeHttpRequests(auth -> 
         			auth
-        			.requestMatchers(HttpMethod.POST).hasRole("ADMIN")
+        			.requestMatchers(HttpMethod.DELETE).hasRole(ADMIN)
+        			.requestMatchers(HttpMethod.PUT).hasRole(ADMIN)
         			.anyRequest().authenticated())
         		.httpBasic(Customizer.withDefaults())
         		.build();
@@ -37,11 +40,19 @@ public class SecurityConfig {
     @Bean
     UserDetailsService userDetailService() {
     	UserDetails user = User.builder()
+    			.username("user")
+    			.password(passwordEncoder().encode("123"))
+    			.roles("USER")
+    			.build();
+    	
+    	UserDetails admin = User.builder()
     			.username("admin")
     			.password(passwordEncoder().encode("123"))
-    			.roles("ADMIN")
+    			.roles(ADMIN)
     			.build();
-    	return new InMemoryUserDetailsManager(user);
+    	
+    	
+    	return new InMemoryUserDetailsManager(user,admin);
     	
     }
     

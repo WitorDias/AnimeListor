@@ -36,7 +36,7 @@ import br.com.animelistor.wrapper.PageableResponse;
 class AnimeControllerIT {
 
 	@Autowired
-	@Qualifier(value ="testRestTemplateRoleUser")
+	@Qualifier(value ="testRestTemplateRoleAdmin")
 	private TestRestTemplate testRestTemplate;
 	
 	@Autowired
@@ -46,8 +46,8 @@ class AnimeControllerIT {
 	@Lazy
 	static class Config {
 		
-		@Bean(name = "testRestTemplateRoleUser")
-		public TestRestTemplate testRestTemplateRoleUser(@Value("${local.server.port}") int port) {
+		@Bean(name = "testRestTemplateRoleAdmin")
+		public TestRestTemplate testRestTemplateRoleAdmin(@Value("${local.server.port}") int port) {
 			RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder()
 					.rootUri("http://localhost:"+port)
 					.basicAuthentication("admin", "123");
