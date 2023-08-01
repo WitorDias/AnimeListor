@@ -1,4 +1,10 @@
-version: '3'
+version: '2.4'
+
+x-database-variables: &database-variables
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql_anime_listor:3306/anime_listor?createDatabaseIfNotExist=true
+  SPRING_DATASOURCE_USERNAME: root
+  SPRING_DATASOURCE_PASSWORD: root
+
 services:
   db:
     image: mysql
@@ -10,6 +16,7 @@ services:
       - '3307:3306'
     volumes:
       - witortests:/var/lib/mysql
+    mem_limit: 512m
       
   prometheus:
     image: prom/prometheus
@@ -20,6 +27,7 @@ services:
       - "./src/main/resources/prometheus.yml:/etc/prometheus/prometheus.yml"
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
+    mem_limit: 128m
     
     restart: always
     
@@ -28,6 +36,16 @@ services:
     container_name: grafana
     ports:
       - 3000:3000
+    mem_limit: 128m  
+    
+  anime-listor:
+    image: docker.io/witordias/anime-listor:0.0.1-SNAPSHOT
+    container_name: anime-listor
+    ports:
+      - 8080:8080
+    environment:
+      <<: *database-variables
+    mem_limit: 512m
     
 volumes:
   witortests:
