@@ -2,7 +2,7 @@
   AnimeListor
 </h1>
 
-API para gerenciar animes (CRUD) com a utilização de classes para tratar excessões, testes unitários, testes de integração, segurança utilizando autenticação em nível de memória, e ferramentas como docker para o uso banco de dados além de prometheus e grafana para monitoramento da api.
+API para gerenciar animes (CRUD) com a utilização de classes para tratar excessões, testes unitários, testes de integração, segurança utilizando autenticação em nível de memória, e ferramentas como o docker para fornecer o banco de dados além de prometheus e grafana para monitoramento da api.
 
 O projeto foi desenvolvido durante minha trajetória contínua de aprendizado do universo Spring. O principal objetivo deste projeto é exercitar todo o conteúdo absorvido de diversas fontes como documentações, fóruns e alguns cursos e palestras de desenvolvedores como Amigoscode, Devoxx, DevDojo.
 
