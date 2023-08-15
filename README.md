@@ -66,7 +66,8 @@ docker compose up
 - Swagger Ui - [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 - [Ir para endpoints](#api-endpoints) para mais informações
 
-### Observação
+### Observações
+- Caso o projeto seja inicializado utilizando uma IDE, certifique-se de ter o Lombok instalado na mesma
 
 - Se o conteiner do AnimeListor iniciar antes do conteiner do MySql pode ocorrer um erro ao se conectar ao banco de dados
 - Caso ocorra, aperte Ctrl C no terminal para parar o Docker e execute o comando:
